@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriel Gonzales - Sekretaris Profesional</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --text:white;
+    --accent:#3b82f6;
+    --accent-light:#60a5fa;
+}
+
+body.light{
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --text:#0f172a;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    scroll-behavior:smooth;
+    transition:0.4s;
+    line-height:1.6;
+}
+
+/* NAVBAR */
+nav{
+    position:fixed;
+    width:100%;
+    padding:15px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(15, 23, 42, 0.95);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+    box-shadow:0 2px 15px rgba(0,0,0,0.1);
+}
+
+body.light nav{
+    background:rgba(248, 250, 252, 0.95);
+    box-shadow:0 2px 15px rgba(0,0,0,0.05);
+}
+
+nav a{
+    color:var(--text);
+    text-decoration:none;
+    margin:0 15px;
+    font-weight:500;
+    position:relative;
+    padding:5px 0;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:var(--accent);
+}
+
+nav a::after{
+    content:'';
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:0;
+    height:2px;
+    background:var(--accent);
+    transition:0.3s;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+.toggle-btn{
+    cursor:pointer;
+    padding:8px 15px;
+    background:var(--accent);
+    border:none;
+    color:white;
+    border-radius:20px;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.toggle-btn:hover{
+    background:var(--accent-light);
+    transform:scale(1.05);
+}
+
+/* SECTION */
+section{
+    min-height:100vh;
+    padding:120px 8%;
+}
+
+/* HERO */
+.hero{
+    display:flex;
+    align-items:center;
+    gap:40px;
+    max-width:1400px;
+    margin:0 auto;
+    position:relative;
+}
+
+.hero-image{
+    flex:0 0 50%;
+    position:relative;
+    display:flex;
+    justify-content:flex-start;
+}
+
+.hero-image img{
+    width:100%;
+    max-width:600px;
+    height:auto;
+    border-radius:25px;
+    object-fit:cover;
+    border:5px solid var(--accent);
+    box-shadow:0 20px 50px rgba(59, 130, 246, 0.4);
+    transition:0.3s;
+}
+
+.hero-content{
+    flex:0 0 50%;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.hero-content-inner{
+    max-width:550px;
+}
+
+.hero h1{
+    font-size:2.8rem;
+    margin-bottom:15px;
+    font-weight:700;
+}
+
+.highlight{
+    color:var(--accent);
+}
+
+.hero p{
+    font-size:1.2rem;
+    margin:15px 0 25px;
+    opacity:0.9;
+    line-height:1.7;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 30px;
+    background:var(--accent);
+    color:white;
+    text-decoration:none;
+    border-radius:25px;
+    transition:0.3s;
+    font-weight:500;
+    box-shadow:0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    background:var(--accent-light);
+    box-shadow:0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* CARD */
+.card{
+    background:var(--card);
+    padding:30px;
+    margin:25px 0;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+/* SKILL */
+.skill{
+    margin:20px 0;
+}
+
+.skill h4{
+    margin-bottom:8px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.bar{
+    height:10px;
+    background:rgba(255,255,255,0.1);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+body.light .bar{
+    background:rgba(0,0,0,0.1);
+}
+
+.fill{
+    height:100%;
+    width:0;
+    background:var(--accent);
+    transition:2s;
+    border-radius:20px;
+}
+
+/* PROJECT */
+.project{
+    padding:25px;
+    background:var(--card);
+    border-radius:15px;
+    margin:20px 0;
+    transition:0.3s;
+    border-left:4px solid var(--accent);
+}
+
+.project h3{
+    margin-bottom:10px;
+    color:var(--accent);
+}
+
+.project p{
+    margin:8px 0;
+}
+
+/* REVEAL */
+.reveal{
+    opacity:0;
+    transform:translateY(60px);
+    transition:1s;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* FOOTER */
+footer{
+    padding:40px;
+    text-align:center;
+    background:var(--card);
+    margin-top:50px;
+}
+
+.social-links{
+    margin:20px 0;
+}
+
+.social-links a{
+    display:inline-block;
+    margin:0 10px;
+    color:var(--text);
+    font-size:1.5rem;
+    transition:0.3s;
+}
+
+.social-links a:hover{
+    color:var(--accent);
+    transform:scale(1.2);
+}
+
+.contact-info{
+    margin:20px 0;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.contact-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+/* RESPONSIVE */
+@media (max-width:1200px){
+    .hero{
+        gap:30px;
+    }
+    
+    .hero-image{
+        flex:0 0 48%;
+    }
+    
+    .hero-content{
+        flex:0 0 52%;
+    }
+    
+    .hero-image img{
+        max-width:500px;
+    }
+}
+
+@media (max-width:992px){
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        gap:40px;
+    }
+    
+    .hero-image{
+        flex:0 0 auto;
+        justify-content:center;
+    }
+    
+    .hero-content{
+        flex:0 0 auto;
+        justify-content:center;
+    }
+    
+    .hero-content-inner{
+        max-width:100%;
+    }
+    
+    .hero h1{
+        font-size:2.4rem;
+    }
+    
+    .hero-image img{
+        max-width:400px;
+    }
+}
+
+@media (max-width:768px){
+    nav{
+        flex-direction:column;
+        padding:15px;
+    }
+    
+    nav div:first-child{
+        margin-bottom:15px;
+    }
+    
+    section{
+        padding:100px 5%;
+    }
+    
+    .contact-info{
+        flex-direction:column;
+        align-items:center;
+    }
+    
+    .hero h1{
+        font-size:2.2rem;
+    }
+    
+    .hero-image img{
+        max-width:350px;
+        border-radius:20px;
+    }
+}
+
+@media (max-width:480px){
+    .hero-image img{
+        max-width:300px;
+        border-radius:15px;
+    }
+    
+    .hero h1{
+        font-size:2rem;
+    }
+    
+    .hero p{
+        font-size:1.1rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div><strong>Gabriel Gonzales</strong></div>
+    <div>
+        <a href="#about">Tentang</a>
+        <a href="#education">Pendidikan</a>
+        <a href="#skills">Kemampuan</a>
+        <a href="#experience">Pengalaman</a>
+        <a href="#contact">Kontak</a>
+        <button class="toggle-btn" onclick="toggleMode()">Dark/Light</button>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-image">
+        <img src="https://i.ibb.co.com/4wFWLCHM/gabs.jpg" alt="Gabriel Gonzales - Sekretaris Profesional">
+    </div>
+    <div class="hero-content">
+        <div class="hero-content-inner">
+            <h1>Halo, Saya <span class="highlight" id="typing"></span></h1>
+            <p>Selamat datang di ruang digital saya. Di sini, Anda akan menemukan perjalanan saya sebagai pengembang web pemula yang berdedikasi, kumpulan keterampilan teknis, serta visi saya dalam dunia Teknologi Informasi. Portofolio ini adalah representasi dari kreativitas dan dedikasi saya dalam menciptakan solusi digital yang interaktif.</p>
+            <a href="cv_gab_zales.pdf" download class="btn">Unduh CV Lengkap</a>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="reveal">
+    <h2>Tentang Saya</h2>
+    <div class="card">
+        <p>Nama panggilan saya adalah Gabriel Gonzales, seorang siswa jurusan Rekayasa Perangkat Lunak (RPL) di SMK Poncol Jakarta Pusat yang memiliki semangat tinggi untuk terus belajar dan berinovasi di bidang IT. Dengan fondasi kuat dalam pengembangan web menggunakan HTML, CSS, dan JavaScript, saya senang mengubah ide menjadi antarmuka yang fungsional dan estetis.
+  
+        </p>
+        <br>
+        <p>
+            Dengan latar belakang pendidikan formal di bidang Ilmu Komputer dan Pemrograman serta pemahaman berbahasa inggris, saya mampu:
+        </p>
+        <ul style="margin:15px 0 15px 20px;">
+            <li>Mengelola waktu dan bekerja sama dengan tim</li>
+            <li>Membuat sebuah Website dengan HTML,CSS Dan JS</li>
+            <li>Menangani komunikasi internal dan eksternal secara profesional</li>
+            <li>Menangani dan memahami algoritma dan tentang pemahamam berbahasa inggris</li>
+            <li>Memberikan solusi penyelesaian yang inovatif dan efisien</li>
+        </ul>
+        <p>
+            Saya percaya bahwa programmer yang baik adalah sebuah solusi strategis yang dapat meningkatkan produktivitas dan efisiensi kerja sama secara keseluruhan.
+        </p>
+    </div>
+</section>
+
+<section id="education" class="reveal">
+    <h2>Pendidikan</h2>
+    
+    <div class="card">
+        <h3>SD Santo Mikael</h3>
+        <p><strong>sekolah dasar pembentukan dasar IT</strong> | 2016 - 2022</p>
+        <p>Perjalanan akademik saya dimulai di SD Santo Mikael, di mana saya membangun dasar karakter dan rasa ingin tahu yang kuat terhadap teknologi. Pada masa ini, saya mulai tertarik pada komputer dan logika dasar</p>
+        
+        <p><strong>Prestasi:</strong> Penghargaan "siswa Harapan 3"</p>
+    </div>
+    
+    <div class="card">
+        <h3>SMP PASKALKS 3</h3>
+        <p><strong>Pendidikan menengah</strong> | 2022 - 2025</p>
+        <p>Melanjutkan langkah di SMP Paskals 3, saya semakin mematangkan minat saya di bidang sains dan teknologi.</p>
+    </div>
+    
+    <div class="card">
+        <h3>SMK Poncol Jakarta</h3>
+        <p><strong>Sekolah Kejuruan RPL</strong> | 2025 - 2026</p>
+        <p>Saat ini, saya menempuh pendidikan khusus di SMK Poncol pada jurusan Rekayasa Perangkat Lunak (RPL). Dedikasi saya terhadap studi terbukti dengan pencapaian gemilang</p>
+        
+                <p><strong>Prestasi:</strong> Penghargaan Ranking 1 dengan nilai sempurna (100) pada mata pelajaran inti seperti DPK (Dasar-dasar Kejuruan) dan Informatika, serta nilai sangat baik (89) dalam Bahasa Inggris.</p>
+    </div>
+</section>
+
+<section id="skills" class="reveal">
+    <h2>Kemampuan Profesional</h2>
+
+    <div class="skill">
+        <h4>
+            <span>Web development</span>
+            <span>87%</span>
+        </h4>
+        <div class="bar"><div class="fill" data-width="87%"></div></div>
+    </div>
+
+    <div class="skill">
+        <h4>
+            <span>IT Fundamentals</span>
+            <span>92%</span>
+        </h4>
+        <div class="bar"><div class="fill" data-width="92%"></div></div>
+    </div>
+
+    <div class="skill">
+        <h4>
+            <span>Komunikasi dan kerja sama tim</span>
+            <span>90%</span>
+        </h4>
+        <div class="bar"><div class="fill" data-width="90%"></div></div>
+    </div>
+
+    <div class="skill">
+        <h4>
+            <span>problem solving</span>
+            <span>89%</span>
+        </h4>
+        <div class="bar"><div class="fill" data-width="89%"></div></div>
+    </div>
+
+    <div class="skill">
+        <h4>
+            <span>continuous learnih </span>
+            <span>91%</span>
+        </h4>
+        <div class="bar"><div class="fill" data-width="91%"></div></div>
+    </div>
+
+    <div class="skill">
+        <h4>
+            <span>English Proficiency</span>
+            <span>92%</span>
+        </h4>
+        <div class="bar"><div class="fill" data-width="92%"></div></div>
+    </div>
+
+    <div class="skill">
+        <h4>
+            <span>Time Management</span>
+            <span>90%</span>
+        </h4>
+        <div class="bar"><div class="fill" data-width="90%"></div></div>
+    </div>
+</section>
+
+<section id="experience" class="reveal">
+    <h2>Pengalaman Profesional</h2>
+
+    <div class="project">
+        <h3>SMK Poncol Jakarta</h3>
+        <p><strong>Pencapaian Akademik unggulan</strong> | Januari 2026 - Sekarang</p>
+        <p>• Meraih posisi Ranking 1 di Semester 1 dengan rata-rata nilai yang luar biasa. Keberhasilan ini dicapai melalui disiplin belajar yang tinggi, penguasaan materi DPK dan Informatika hingga tingkat mahir (Nilai 100), serta kemampuan adaptasi cepat terhadap kurikulum rekayasa perangkat lunak</p>
+        <p>• Penyelesaian pada Project Semester 1 membuat Web E Commerse dan mendapatkan Nilai tertinggi Pada Project tersebut</p>
+        <p>• Mengelola komunikasi eksternal dengan teman se tim untuk melakukan Project berikutnya</p>
+        <p>• Mengembangkan kemampuan berbahasa inggris secara profesional dan pen adaptasian </p>
+        <p>• mendapatkan gelar murid terbaik X rpl dalam beberapa bulan Terakhir</p>
+    </div>
+
+    <div class="project">
+        <h3>pengembangan Web Interaktif</h3>
+        <p><strong>Project Pribadi</strong> | Juli 2025 - Februari 2026</p>
+        <p>• Mengadaptasi serta mengulik pengetahuan mengenai pemrograman</p>
+        <p>• Kemampuan dalam Bahasa Pemrogrwman Python </p>
+        <p>• Membuat sistem Website E commerse yang dapat di jual</p>
+        <p>• Memahami struktur alpgika Algoritma dalam web</p>
+        <p>• Menguasai Alur web dalam pemrograman</p>
+    </div>
+
+    <div class="project">
+        <h3>Asisten Laboratorium Komputer & Mentor Sebaya</h3>
+        <p><strong>SMK Poncol Jakarta</strong> | Juli 2025 - Februari 2026</p>
+        <p>• Mendukung tim HR dalam proses rekrutmen dan onboarding karyawan baru</p>
+        <p>• Mengelola database karyawan dan dokumen personalia</p>
+        <p>• Membantu dalam penyusunan laporan bulanan dan presentasi eksekutif</p>
+        <p>• Mengatur logistik untuk acara perusahaan dan pelatihan internal</p>
+    </div>
+</section>
+
+<section id="contact" class="reveal">
+    <h2>Hubungi Saya</h2>
+    <div class="card">
+        <p style="margin-bottom:20px;">Saya terbuka untuk peluang kerja sebagai Sekretaris Eksekutif atau posisi administratif senior di perusahaan Anda.</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                📧 <span>gabrael9999@email.com</span>
+            </div>
+            <div class="contact-item">
+                📱 <span>+62 882-1394-7356</span>
+            </div>
+            <div class="contact-item">
+                📍 <span>Jakarta, Indonesia</span>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" title="LinkedIn">🔗</a>
+            <a href="#" title="Email">✉️</a>
+            <a href="#" title="WhatsApp">💬</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Gabriel Gonzales - orang yang dapat di andalkan</p>
+    <p>Portfolio ini dirancang untuk menampilkan keahlian berbahasa inggris dan profesionalisme dalam dunia Ilmu Teknologi dan Komunikasi</p>
+</footer>
+
+<script>
+/* DARK LIGHT */
+function toggleMode(){
+    document.body.classList.toggle("light");
+    localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+}
+
+// Load saved theme
+if(localStorage.getItem('theme') === 'light'){
+    document.body.classList.add('light');
+}
+
+/* TYPING */
+const text="Gabriel Gonzales";
+let i=0;
+function typing(){
+    if(i<text.length){
+        document.getElementById("typing").innerHTML+=text.charAt(i);
+        i++;
+        setTimeout(typing,120);
+    }
+}
+typing();
+
+/* SCROLL REVEAL */
+function reveal(){
+    const reveals=document.querySelectorAll(".reveal");
+
+    reveals.forEach(el=>{
+        const windowHeight=window.innerHeight;
+        const elementTop=el.getBoundingClientRect().top;
+
+        if(elementTop < windowHeight-100){
+            el.classList.add("active");
+
+            const fills=el.querySelectorAll(".fill");
+            fills.forEach(fill=>{
+                fill.style.width=fill.getAttribute("data-width");
+            });
+        }
+    });
+}
+window.addEventListener("scroll",reveal);
+reveal();
+</script>
+
+</body>
+</html>
+```
